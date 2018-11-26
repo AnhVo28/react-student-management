@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
-import { actAddUser } from '../actions/users';
+import { actRequestAddUser } from '../../store/actions/users';
 
 class userModal extends Component {
 
@@ -23,21 +22,10 @@ class userModal extends Component {
 
     handleOnSubmit = (e)=>{
         e.preventDefault();
-        console.log(this.state);
-        axios({
-            method: 'POST',
-            url: 'http://sv.myclass.vn/api/QuanLyTrungTam/ThemNguoiDung',
-            data: this.state
-        }).then(res=>{
-            console.log(res);
-            this.props.onAddUser(res.data)
-            
-        }).catch(err=>{
-            console.log(err);
-            
-        })
+        // console.log(this.state);
+        this.props.onAddUser(this.state)
 
-        // console.log('hahahahh');
+        
         
         
     }
@@ -99,7 +87,7 @@ class userModal extends Component {
 
 const actions = (dispatch)=>({
     onAddUser: (user)=>{
-        dispatch(actAddUser(user))
+        dispatch(actRequestAddUser(user))
     }
 })
 

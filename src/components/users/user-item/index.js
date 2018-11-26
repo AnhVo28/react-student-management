@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import { actDeleteUser } from '../../actions/users';
+import { actDeleteUser } from '../../../store/actions/users';
 
  class userItem extends Component {
 
@@ -31,6 +31,7 @@ import { actDeleteUser } from '../../actions/users';
             <td>{user.HoTen}</td>
             <td>{user.Email}</td>
             <td>{user.SoDT}</td>
+            <td>{user.TenLoaiNguoiDung}</td>
             <td>
               <button onClick={()=>this.handleDelete(user.TaiKhoan)} className="btn btn-success">Xoa</button>
               <button className="btn btn-info">Sua</button>

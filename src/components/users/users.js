@@ -1,24 +1,13 @@
 import React, { Component } from 'react'
 import UserItem from './user-item'
-import axios from 'axios'
 import { connect } from 'react-redux'
-import { actStoreUserData } from '../actions/users';
+import {  actRequestUserData } from '../../store/actions/users';
 
 
  class Users extends Component {
 
     componentDidMount(){
-        axios({
-            method:'GET',
-            url: 'http://sv.myclass.vn/api/QuanLyTrungTam/DanhSachNguoiDung'
-        }).then(res=> {
-     
-            this.props.onStoreData(res.data);
-            
-        }).catch(err=>{
-            console.log(err);
-            
-        })
+        this.props.onStoreData();
     }
 
     renderItem=()=>{
@@ -27,7 +16,7 @@ import { actStoreUserData } from '../actions/users';
         })
     }
   render() {
-      const {userList} = this.props;
+    //   const {userList} = this.props;
     //   console.log(userList);
       
     
@@ -42,6 +31,7 @@ import { actStoreUserData } from '../actions/users';
                         <th>Họ tên</th>
                         <th>Email</th>
                         <th>Số điện thoại</th>
+                        <th>Loai nguoi dung</th>
                         <th>Hanh Dong</th>
                     </tr>
                 </thead>
@@ -56,8 +46,8 @@ import { actStoreUserData } from '../actions/users';
 
 const actions = (dispatch)=>{
     return({
-        onStoreData: userList=>{
-            dispatch(actStoreUserData(userList))
+        onStoreData: ()=>{
+            dispatch(actRequestUserData())
         }
     })
 }
